@@ -75,7 +75,7 @@ YAML là gì, hay cấu trúc SKILL.md viết thế nào.
 **Bước 1: Clone repository**
 
 ```bash
-git clone https://github.com/<username>/skill-generator.git
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
 ```
 
 **Bước 2: Copy vào thư mục skills** (chọn 1 trong 2)
@@ -121,7 +121,7 @@ Claude Code hỗ trợ Custom Commands qua file `CLAUDE.md` — tương tự SKI
 **Bước 1: Clone và copy**
 
 ```bash
-git clone https://github.com/<username>/skill-generator.git
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
 ```
 
 **Bước 2: Cài đặt** (chọn 1 trong 2)
@@ -165,7 +165,7 @@ Cursor hỗ trợ Rules — dùng skill-generator làm Custom Rule.
 **Bước 1: Clone và copy**
 
 ```bash
-git clone https://github.com/<username>/skill-generator.git
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
 ```
 
 **Bước 2: Cài vào Cursor Rules**
@@ -218,7 +218,7 @@ Windsurf dùng Cascade Rules — tương tự Cursor.
 **Bước 1: Clone và copy**
 
 ```bash
-git clone https://github.com/<username>/skill-generator.git
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
 ```
 
 **Bước 2: Cài vào Windsurf Rules**
@@ -263,7 +263,7 @@ Cline dùng Custom Instructions — paste nội dung SKILL.md vào System Prompt
 **Bước 1: Clone**
 
 ```bash
-git clone https://github.com/<username>/skill-generator.git
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
 ```
 
 **Bước 2: Cài vào dự án**
@@ -302,7 +302,7 @@ GitHub Copilot hỗ trợ Custom Instructions ở cấp dự án.
 **Bước 1: Clone và copy**
 
 ```bash
-git clone https://github.com/<username>/skill-generator.git
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
 cp -r skill-generator .github/skill-generator
 ```
 
@@ -335,13 +335,13 @@ Copilot: (Đọc instructions → Bắt đầu phỏng vấn)
 
 | Nền tảng | 1 lệnh (macOS/Linux) |
 | --- | --- |
-| **Antigravity (Global)** | `git clone https://github.com/<username>/skill-generator.git ~/.gemini/antigravity/skills/skill-generator` |
-| **Antigravity (Workspace)** | `git clone https://github.com/<username>/skill-generator.git .agent/skills/skill-generator` |
-| **Claude Code** | `git clone https://github.com/<username>/skill-generator.git .claude/commands/skill-generator` |
-| **Cursor** | `git clone https://github.com/<username>/skill-generator.git .cursor/rules/skill-generator` |
-| **Windsurf** | `git clone https://github.com/<username>/skill-generator.git .windsurf/rules/skill-generator` |
-| **Cline** | `git clone https://github.com/<username>/skill-generator.git .clinerules/skill-generator` |
-| **Copilot** | `git clone https://github.com/<username>/skill-generator.git .github/skill-generator` |
+| **Antigravity (Global)** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git ~/.gemini/antigravity/skills/skill-generator` |
+| **Antigravity (Workspace)** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .agent/skills/skill-generator` |
+| **Claude Code** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .claude/commands/skill-generator` |
+| **Cursor** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .cursor/rules/skill-generator` |
+| **Windsurf** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .windsurf/rules/skill-generator` |
+| **Cline** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .clinerules/skill-generator` |
+| **Copilot** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .github/skill-generator` |
 
 ### Cập nhật phiên bản mới
 
