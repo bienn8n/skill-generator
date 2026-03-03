@@ -433,14 +433,32 @@ Bạn nói ý tưởng
 
 **AI:** Sẽ tự nhận diện đây là Fast Track (bạn đã cung cấp flow rõ ràng) → xác nhận lại → sinh skill `price-quoter` hoàn chỉnh.
 
-### Scripts hỗ trợ (tùy chọn)
+### Scripts hỗ trợ (7 công cụ)
 
 ```bash
-# Kiểm tra SKILL.md có hợp lệ không (chấm điểm A-F)
+# Kiểm tra SKILL.md có hợp lệ không
 python scripts/validate_skill.py ./path/to/my-skill/
 
 # Mô phỏng chạy thử skill
 python scripts/simulate_skill.py ./path/to/my-skill/
+
+# 🆕 Audit 7 nguyên tắc → chấm điểm S/A/B/C/D/F
+python scripts/skill_audit.py ./path/to/my-skill/
+python scripts/skill_audit.py ./path/to/my-skill/ --json
+
+# 🆕 Thống kê + Cognitive Load Score
+python scripts/skill_stats.py ./path/to/my-skill/
+
+# 🆕 Export sang Cursor/Claude/Windsurf/Cline/Copilot/OpenClaw
+python scripts/skill_export.py ./path/to/my-skill/ --platform cursor
+python scripts/skill_export.py ./path/to/my-skill/ --platform all
+
+# 🆕 So sánh 2 phiên bản skill
+python scripts/skill_compare.py ./old-skill/ ./new-skill/
+
+# 🆕 Tạo skeleton skill mới
+python scripts/skill_scaffold.py my-new-skill --full
+python scripts/skill_scaffold.py my-new-skill --interactive
 ```
 
 ---
@@ -448,8 +466,8 @@ python scripts/simulate_skill.py ./path/to/my-skill/
 ## 📁 Cấu trúc dự án
 
 ```text
-skill-generator/                             (20 files)
-├── SKILL.md                                ← 🧠 Bộ não chính (1090+ dòng, 5 Phase)
+skill-generator/                             (25 files)
+├── SKILL.md                                ← 🧠 Bộ não chính (1100+ dòng, 5 Phase)
 ├── README.md                               ← 📖 File này
 │
 ├── resources/                              ← 📚 Tài liệu tham khảo (12 files)
@@ -471,9 +489,14 @@ skill-generator/                             (20 files)
 │   ├── example_api_docs.md                 ← Ví dụ 2: API docs generator
 │   └── example_db_migration.md             ← Ví dụ 3: DB migration helper
 │
-└── scripts/                                ← 🔧 Công cụ (2 files)
+└── scripts/                                ← 🔧 Công cụ (7 files)
     ├── validate_skill.py                   ← Kiểm tra SKILL.md hợp lệ
-    └── simulate_skill.py                   ← Mô phỏng chạy thử skill
+    ├── simulate_skill.py                   ← Mô phỏng chạy thử skill
+    ├── skill_audit.py                      ← 🆕 Audit 7 nguyên tắc, chấm S-tier
+    ├── skill_export.py                     ← 🆕 Export ra 6 nền tảng
+    ├── skill_stats.py                      ← 🆕 Thống kê + Cognitive Load
+    ├── skill_compare.py                    ← 🆕 So sánh 2 phiên bản
+    └── skill_scaffold.py                   ← 🆕 Tạo skeleton skill mới
 ```
 
 ---
@@ -515,12 +538,15 @@ skill-generator/                             (20 files)
 - Thêm **7 Nguyên Tắc Skill Hoàn Hảo** + triết lý System Architecture vào Mindset
 - Thêm **⚡ Fast Track** — lối tắt cho skill đơn giản (skip Phase 1-3)
 - Thêm **Atomic Justification** — giải thích tại sao 5 Phases = 1 pipeline
-- Thêm **Semantic Precision** — bảng động từ chính xác thay từ mơ hồ
-- Thêm **Error Recovery + Decision Tree** — IF exit code, Confidence Score
+- Thêm **5 scripts chuyên gia mới:**
+  - `skill_audit.py` — Audit 7 nguyên tắc, chấm điểm S/A/B/C/D/F
+  - `skill_export.py` — Export ra 6 nền tảng (Cursor, Claude, Windsurf...)
+  - `skill_stats.py` — Thống kê + Cognitive Load Score
+  - `skill_compare.py` — So sánh 2 phiên bản skill
+  - `skill_scaffold.py` — 1 lệnh tạo skeleton skill mới
+- Thêm hỗ trợ **OpenClaw AI Gateway**
 - Nâng cấp **prompt_engineering.md** (+210 dòng): 5 kỹ thuật expert + Ma Trận
 - Nâng cấp **checklist.md** (+100 dòng): Expert Quality Gates + Red Flags
-- Nâng cấp **interview_questions.md** (+60 dòng): Expert Probing + Cognitive Extraction
-- Nâng cấp **script_integration.md** (+100 dòng): Wrapper Script + 7 lớp bảo mật
 - Đạt **100/100 S-tier** theo self-audit 7 nguyên tắc
 
 ### v3.0 Ultimate (2026-03-03)
