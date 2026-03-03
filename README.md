@@ -2,8 +2,6 @@
 
 > **Biến ý tưởng + quy trình công việc trong đầu bạn → AI Skill tự động hóa**
 > Dành cho Google Antigravity. Đánh giá: 🏆 100/100 S-tier.
->
-> **Được phát triển bởi Thân Công Hải** 🇻🇳
 
 ---
 
