@@ -64,6 +64,7 @@ YAML là gì, hay cấu trúc SKILL.md viết thế nào.
 | **Windsurf / Codeium** | ✅ Rules (.windsurfrules) | 🟡 85% | Tương tự Cursor |
 | **Cline** | ✅ Custom Instructions (.clinerules) | 🟡 80% | Paste nội dung vào System Prompt |
 | **GitHub Copilot** | ✅ Instructions (.github/copilot-instructions.md) | 🟡 75% | Chỉ hỗ trợ instructions, không có scripts |
+| **OpenClaw** | ✅ System Prompt (Agent Config) | 🟡 80% | Dùng qua Telegram bot, cấu hình trong agent config |
 | **Aider** | ⚠️ Conventions (.aider.conf.yml) | 🟠 60% | Hạn chế, chỉ dùng conventions |
 
 ---
@@ -329,6 +330,42 @@ Copilot: (Đọc instructions → Bắt đầu phỏng vấn)
 
 ---
 
+### 🐾 OpenClaw (AI Gateway)
+
+OpenClaw là AI Gateway hỗ trợ multi-LLM, thường truy cập qua Telegram bot.
+Dùng System Prompt của agent để nhúng skill-generator.
+
+**Bước 1: Clone repository**
+
+```bash
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
+```
+
+**Bước 2: Copy nội dung SKILL.md vào Agent Config**
+
+1. Mở file cấu hình agent của OpenClaw (thường là `config.yaml` hoặc qua Admin Panel)
+2. Tìm phần **System Prompt** hoặc **Agent Instructions** của agent muốn thêm skill
+3. Copy toàn bộ nội dung file `SKILL.md` vào phần System Prompt
+
+**Bước 3: Upload tài liệu tham khảo (tùy chọn)**
+
+Nếu OpenClaw hỗ trợ file upload / knowledge base:
+
+- Upload các file trong `resources/` vào knowledge base của agent
+- Đặc biệt: `skill_template.md`, `checklist.md`, `anti_patterns.md`
+
+**Bước 4: Sử dụng** (qua Telegram hoặc Web UI)
+
+```
+Bạn: Tạo skill tự động trả lời khách hàng
+OpenClaw Bot: (Đọc System Prompt → Bắt đầu phỏng vấn)
+```
+
+> ⚠️ **Lưu ý:** OpenClaw chạy qua API nên không hỗ trợ tạo file trực tiếp.
+> AI sẽ sinh nội dung SKILL.md dạng text → bạn cần tự copy vào file.
+
+---
+
 ### 📥 Cài bằng 1 lệnh (Quick Install)
 
 | Nền tảng | 1 lệnh (macOS/Linux) |
@@ -340,6 +377,7 @@ Copilot: (Đọc instructions → Bắt đầu phỏng vấn)
 | **Windsurf** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .windsurf/rules/skill-generator` |
 | **Cline** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .clinerules/skill-generator` |
 | **Copilot** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .github/skill-generator` |
+| **OpenClaw** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git` → Copy SKILL.md vào Agent System Prompt |
 
 ### Cập nhật phiên bản mới
 
