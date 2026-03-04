@@ -1,5 +1,5 @@
 # 🧩 Skill Generator v3.2 Expert — Bộ Công Cụ Tạo AI Skill Hoàn Chỉnh
-
+<a href="https://unikorn.vn/p/skillgenerator?ref=embed" target="_blank"><img src="https://unikorn.vn/api/widgets/badge/skillgenerator/rank?theme=light&type=weekly" alt="Skill Generator - Hàng tuần" style="width: 250px; height: 64px;" width="250" height="64" /></a>
 > **Biến ý tưởng + quy trình công việc trong đầu bạn → AI Skill tự động hóa**
 > Dành cho Google Antigravity. Đánh giá: 🏆 100/100 S-tier.
 
