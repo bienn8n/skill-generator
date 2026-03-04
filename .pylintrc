@@ -1,0 +1,24 @@
+[MAIN]
+# Skill Generator scripts - relaxed pylint config
+# Scripts are CLI utilities, not production library code
+
+[MESSAGES CONTROL]
+disable=
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    C0301,  # line-too-long
+    C0303,  # trailing-whitespace
+    C0415,  # import-outside-toplevel
+    R0801,  # duplicate-code (shared patterns across scripts)
+    R0903,  # too-few-public-methods
+    R0914,  # too-many-locals
+    W0613,  # unused-argument
+    W0718,  # broad-exception-caught
+    W0612,  # unused-variable
+
+[FORMAT]
+max-line-length=120
+
+[SIMILARITIES]
+min-similarity-lines=10
