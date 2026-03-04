@@ -783,16 +783,32 @@ python scripts/skill_scaffold.py my-new-skill --full
 python scripts/skill_scaffold.py my-new-skill --interactive
 ```
 
+### ⚡ Slash Commands
+
+Gõ `/` trong chat AI để truy cập nhanh:
+
+| Lệnh | Chức năng |
+| --- | --- |
+| `/skill-audit` | 🔍 Audit skill theo 7 nguyên tắc |
+| `/skill-export` | 📦 Export ra các nền tảng khác |
+| `/skill-stats` | 📊 Xem thống kê + Cognitive Load |
+| `/skill-compare` | 🔄 So sánh 2 phiên bản skill |
+| `/skill-scaffold` | 🧩 Tạo skeleton skill mới |
+| `/skill-validate` | ✅ Kiểm tra SKILL.md hợp lệ |
+| `/skill-simulate` | 🧪 Mô phỏng chạy thử |
+
 ---
 
 ## 📁 Cấu trúc dự án
 
 ```text
-skill-generator/                             (25 files)
-├── SKILL.md                                ← 🧠 Bộ não chính (1100+ dòng, 5 Phase)
+skill-generator/                             (27+ files)
+├── SKILL.md                                ← 🧠 Bộ não chính (1200+ dòng, 5 Phase)
 ├── README.md                               ← 📖 File này
+├── .gitignore                              ← 🔒 Git config
 │
-├── resources/                              ← 📚 Tài liệu tham khảo (12 files)
+├── resources/                              ← 📚 Tài liệu tham khảo (13 files)
+│   ├── scripts_guide.md                    ← 🆕 Hướng dẫn sử dụng 7 scripts
 │   ├── skill_template.md                   ← Template chuẩn SKILL.md
 │   ├── checklist.md                        ← Checklist 2-tier (Basic + Expert)
 │   ├── advanced_patterns.md                ← 6 pattern kiến trúc nâng cao
@@ -811,14 +827,23 @@ skill-generator/                             (25 files)
 │   ├── example_api_docs.md                 ← Ví dụ 2: API docs generator
 │   └── example_db_migration.md             ← Ví dụ 3: DB migration helper
 │
-└── scripts/                                ← 🔧 Công cụ (7 files)
-    ├── validate_skill.py                   ← Kiểm tra SKILL.md hợp lệ
-    ├── simulate_skill.py                   ← Mô phỏng chạy thử skill
-    ├── skill_audit.py                      ← 🆕 Audit 7 nguyên tắc, chấm S-tier
-    ├── skill_export.py                     ← 🆕 Export ra 6 nền tảng
-    ├── skill_stats.py                      ← 🆕 Thống kê + Cognitive Load
-    ├── skill_compare.py                    ← 🆕 So sánh 2 phiên bản
-    └── skill_scaffold.py                   ← 🆕 Tạo skeleton skill mới
+├── scripts/                                ← 🔧 Công cụ Python (7 files)
+│   ├── validate_skill.py                   ← Kiểm tra SKILL.md hợp lệ
+│   ├── simulate_skill.py                   ← Mô phỏng chạy thử skill
+│   ├── skill_audit.py                      ← 🆕 Audit 7 nguyên tắc, chấm S-tier
+│   ├── skill_export.py                     ← 🆕 Export ra 6 nền tảng
+│   ├── skill_stats.py                      ← 🆕 Thống kê + Cognitive Load
+│   ├── skill_compare.py                    ← 🆕 So sánh 2 phiên bản
+│   └── skill_scaffold.py                   ← 🆕 Tạo skeleton skill mới
+│
+└── .agents/workflows/                      ← ⚡ Slash commands (7 files)
+    ├── skill-audit.md                      ← /skill-audit
+    ├── skill-export.md                     ← /skill-export
+    ├── skill-stats.md                      ← /skill-stats
+    ├── skill-compare.md                    ← /skill-compare
+    ├── skill-scaffold.md                   ← /skill-scaffold
+    ├── skill-validate.md                   ← /skill-validate
+    └── skill-simulate.md                   ← /skill-simulate
 ```
 
 ---
@@ -856,17 +881,19 @@ skill-generator/                             (25 files)
 
 ## 📚 Changelog
 
-### v3.2 Expert Edition (2026-03-03)
+### v3.2 Expert Edition (2026-03-04)
 
 - Thêm **7 Nguyên Tắc Skill Hoàn Hảo** + triết lý System Architecture vào Mindset
 - Thêm **⚡ Fast Track** — lối tắt cho skill đơn giản (skip Phase 1-3)
-- Thêm **Atomic Justification** — giải thích tại sao 5 Phases = 1 pipeline
+- Thêm **📦 Full Package Output** — tạo skill package hoàn chỉnh (không chỉ 1 file)
 - Thêm **5 scripts chuyên gia mới:**
   - `skill_audit.py` — Audit 7 nguyên tắc, chấm điểm S/A/B/C/D/F
   - `skill_export.py` — Export ra 6 nền tảng (Cursor, Claude, Windsurf...)
   - `skill_stats.py` — Thống kê + Cognitive Load Score
   - `skill_compare.py` — So sánh 2 phiên bản skill
   - `skill_scaffold.py` — 1 lệnh tạo skeleton skill mới
+- Thêm **7 slash commands** — truy cập nhanh bằng `/skill-*`
+- Thêm **scripts_guide.md** — hướng dẫn sử dụng chi tiết 7 scripts
 - Thêm hỗ trợ **OpenClaw AI Gateway**
 - Nâng cấp **prompt_engineering.md** (+210 dòng): 5 kỹ thuật expert + Ma Trận
 - Nâng cấp **checklist.md** (+100 dòng): Expert Quality Gates + Red Flags
