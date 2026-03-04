@@ -1,4 +1,326 @@
+# 🧩 Skill Generator v3.2 Expert — Complete AI Skill Building Toolkit
+
+<a href="https://unikorn.vn/p/skillgenerator?ref=embed" target="_blank"><img src="https://unikorn.vn/api/widgets/badge/skillgenerator/rank?theme=light&type=weekly" alt="Skill Generator - Weekly" style="width: 250px; height: 64px;" width="250" height="64" /></a>
+
+> **Turn your ideas + workflows into fully automated AI Skills**
+> Built for Google Antigravity. Score: 🏆 100/100 S-tier.
+
+---
+
+## 📋 Table of Contents
+
+- [Introduction](#introduction)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Scripts & Tools](#-scripts--tools-7-utilities)
+- [Slash Commands](#-slash-commands)
+- [Project Structure](#-project-structure)
+- [Platform Compatibility](#-platform-compatibility)
+- [Documentation](#-documentation)
+- [Changelog](#-changelog-en)
+- [License](#-license-en)
+
+---
+
+## Introduction
+
+**Skill Generator** is a specialized AI Skill for **Google Antigravity** (and 7 other platforms).
+It helps you **create new AI Skills** — even if you **DON'T know** what a skill is, what YAML is, or how to write SKILL.md.
+
+**You only need:**
+
+- ✅ An idea about what you want to automate
+- ✅ A workflow / process / logic in your head
+
+**AI handles the rest:**
+
+- 🎤 Smart interview to understand your workflow
+- 🔍 Auto-detect the right patterns
+- 🏗️ Generate a **complete skill package** (not just 1 file!)
+- 🧪 Live test before deployment
+
+### Key Features (v3.2)
+
+| Feature | Description |
+| --- | --- |
+| 🧠 **5-Phase Pipeline** | Interview → Extract → Detect → Generate → Test |
+| ⚡ **Fast Track** | Skip phases when user provides detailed workflow upfront |
+| 📦 **Full Package Output** | Generates complete skill directory: SKILL.md + README + resources + examples + scripts + workflows |
+| 🔧 **7 Python Scripts** | Audit, Export, Stats, Compare, Scaffold, Validate, Simulate |
+| ⚡ **7 Slash Commands** | `/skill-audit`, `/skill-export`, `/skill-stats`, and more |
+| 🌐 **8 Platforms** | Antigravity, Claude Code, Cursor, Windsurf, Cline, Copilot, OpenClaw, Aider |
+| 🏆 **100/100 S-tier** | Self-audited against 7 Perfect Skill Principles |
+
+### Who is this for?
+
+| Audience | Example |
+| --- | --- |
+| **Non-coders** | Sales rep who wants AI to auto-draft price quotes |
+| **Developers** | Want AI to format commit messages, review code |
+| **Team Leads** | Standardize team workflows with AI |
+| **Freelancers** | Automate repetitive daily tasks |
+
+---
+
+## 🔧 Installation
+
+### Prerequisites
+
+- A supported AI Agent platform (see compatibility table below)
+- Python 3.8+ (optional, for scripts)
+- Git (recommended)
+
+### Quick Install (1 command)
+
+| Platform | Command (macOS/Linux) |
+| --- | --- |
+| **Antigravity (Global)** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git ~/.gemini/antigravity/skills/skill-generator` |
+| **Antigravity (Workspace)** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .agent/skills/skill-generator` |
+| **Claude Code** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .claude/commands/skill-generator` |
+| **Cursor** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .cursor/rules/skill-generator` |
+| **Windsurf** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .windsurf/rules/skill-generator` |
+| **Cline** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .clinerules/skill-generator` |
+| **Copilot** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .github/skill-generator` |
+| **OpenClaw** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git` → Copy SKILL.md into Agent System Prompt |
+
+### Windows Installation
+
+```powershell
+# Antigravity (Global)
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git "$env:USERPROFILE\.gemini\antigravity\skills\skill-generator"
+```
+
+### Update to latest version
+
+```bash
+cd path/to/skill-generator
+git pull
+```
+
+---
+
+## 🚀 Usage
+
+Just tell the AI what you want to automate:
+
+```
+You: Create a skill that auto-drafts price quote emails
+AI: (Reads SKILL.md → Starts interviewing you → Generates complete skill package)
+```
+
+### Scripts & Tools (7 Utilities)
+
+```bash
+# Validate SKILL.md structure
+python scripts/validate_skill.py ./path/to/my-skill/
+
+# Simulate a dry-run of the skill
+python scripts/simulate_skill.py ./path/to/my-skill/
+
+# 🆕 Audit against 7 Perfect Principles → S/A/B/C/D/F grade
+python scripts/skill_audit.py ./path/to/my-skill/
+python scripts/skill_audit.py ./path/to/my-skill/ --json
+python scripts/skill_audit.py ./path/to/my-skill/ --strict
+
+# 🆕 View stats + Cognitive Load Score
+python scripts/skill_stats.py ./path/to/my-skill/
+
+# 🆕 Export to Cursor/Claude/Windsurf/Cline/Copilot/OpenClaw
+python scripts/skill_export.py ./path/to/my-skill/ --platform cursor
+python scripts/skill_export.py ./path/to/my-skill/ --platform all
+
+# 🆕 Compare 2 versions of a skill
+python scripts/skill_compare.py ./old-skill/ ./new-skill/
+
+# 🆕 Scaffold a new skill from scratch
+python scripts/skill_scaffold.py my-new-skill --full
+python scripts/skill_scaffold.py my-new-skill --interactive
+```
+
+### ⚡ Slash Commands
+
+Type `/` in your AI chat to access these commands:
+
+| Command | Description |
+| --- | --- |
+| `/skill-audit` | 🔍 Audit skill against 7 principles |
+| `/skill-export` | 📦 Export to other platforms |
+| `/skill-stats` | 📊 View stats + Cognitive Load |
+| `/skill-compare` | 🔄 Compare 2 skill versions |
+| `/skill-scaffold` | 🧩 Create new skill skeleton |
+| `/skill-validate` | ✅ Check SKILL.md validity |
+| `/skill-simulate` | 🧪 Simulate dry-run |
+
+---
+
+## 📁 Project Structure
+
+```text
+skill-generator/                             (27+ files)
+├── SKILL.md                                ← 🧠 Core brain (1200+ lines, 5 Phases)
+├── README.md                               ← 📖 This file
+├── .gitignore                              ← 🔒 Git config
+│
+├── resources/                              ← 📚 Reference docs (13 files)
+│   ├── scripts_guide.md                    ← 🆕 Guide for all 7 scripts
+│   ├── skill_template.md                   ← Standard SKILL.md template
+│   ├── checklist.md                        ← 2-tier quality checklist
+│   ├── advanced_patterns.md                ← 6 architecture patterns
+│   ├── interview_questions.md              ← 30+ questions + Expert Probing
+│   ├── pattern_detection.md                ← Decision tree + Complexity scoring
+│   ├── blueprints.md                       ← 10 ready-made skill templates
+│   ├── anti_patterns.md                    ← 15 common mistakes + fixes
+│   ├── prompt_engineering.md               ← 15 instruction-writing techniques
+│   ├── versioning_guide.md                 ← Skill upgrade guide
+│   ├── industry_questions.md               ← 8 industry-specific question sets
+│   ├── composition_cookbook.md              ← 5 multi-skill composition patterns
+│   └── script_integration.md              ← Script integration (7 security layers)
+│
+├── examples/                               ← 🎯 Example skills (3 files)
+│   ├── example_git_commit.md               ← Example 1: Git commit formatter
+│   ├── example_api_docs.md                 ← Example 2: API docs generator
+│   └── example_db_migration.md             ← Example 3: DB migration helper
+│
+├── scripts/                                ← 🔧 Python tools (7 files)
+│   ├── validate_skill.py                   ← Validate SKILL.md structure
+│   ├── simulate_skill.py                   ← Simulate dry-run
+│   ├── skill_audit.py                      ← 🆕 Audit 7 principles, grade S-tier
+│   ├── skill_export.py                     ← 🆕 Export to 6 platforms
+│   ├── skill_stats.py                      ← 🆕 Stats + Cognitive Load
+│   ├── skill_compare.py                    ← 🆕 Compare 2 versions
+│   └── skill_scaffold.py                   ← 🆕 Scaffold new skill
+│
+└── .agents/workflows/                      ← ⚡ Slash commands (7 files)
+    ├── skill-audit.md                      ← /skill-audit
+    ├── skill-export.md                     ← /skill-export
+    ├── skill-stats.md                      ← /skill-stats
+    ├── skill-compare.md                    ← /skill-compare
+    ├── skill-scaffold.md                   ← /skill-scaffold
+    ├── skill-validate.md                   ← /skill-validate
+    └── skill-simulate.md                   ← /skill-simulate
+```
+
+---
+
+## 🌐 Platform Compatibility
+
+| Platform | Skills/Custom Instructions | Compatibility | Notes |
+| --- | --- | --- | --- |
+| **Google Antigravity** | ✅ Skills (SKILL.md) | 🟢 100% Native | Designed for this platform |
+| **Claude Code** | ✅ Custom Commands (CLAUDE.md) | 🟢 95% | Rename SKILL.md → CLAUDE.md |
+| **Cursor** | ✅ Rules (.cursor/rules/) | 🟡 85% | Use as Rule, no auto-trigger |
+| **Windsurf / Codeium** | ✅ Rules (.windsurfrules) | 🟡 85% | Similar to Cursor |
+| **Cline** | ✅ Custom Instructions (.clinerules) | 🟡 80% | Paste into System Prompt |
+| **OpenClaw** | ✅ System Prompt (Agent Config) | 🟡 80% | Via Telegram bot, config in agent |
+| **GitHub Copilot** | ✅ Instructions (.github/) | 🟡 75% | Instructions only, no scripts |
+| **Aider** | ⚠️ Conventions (.aider.conf.yml) | 🟠 60% | Limited, conventions only |
+
+---
+
+## 📚 Documentation
+
+### For Beginners
+
+| File | Description | When to read |
+| --- | --- | --- |
+| `SKILL.md` | Core brain — AI reads this | No need (AI handles it) |
+| `resources/scripts_guide.md` | 🆕 Guide for all 7 scripts | Want to use analysis tools |
+| `resources/skill_template.md` | Standard SKILL.md template | Want to understand skill structure |
+| `resources/blueprints.md` | 10 ready-made templates | Need quick ideas |
+
+### For Intermediate Users
+
+| File | Description | When to read |
+| --- | --- | --- |
+| `resources/prompt_engineering.md` | 15 instruction techniques | Want more precise skills |
+| `resources/anti_patterns.md` | 15 common mistakes | Debug broken skills |
+| `resources/advanced_patterns.md` | 6 architecture patterns | Complex skills |
+
+### For Experts
+
+| File | Description | When to read |
+| --- | --- | --- |
+| `resources/composition_cookbook.md` | 5 multi-skill patterns | Build skill systems |
+| `resources/industry_questions.md` | 8 industry question sets | Domain-specific skills |
+| `resources/script_integration.md` | Script integration + 7 security layers | Skills that run system commands |
+
+---
+
+## 📜 Changelog (EN)
+
+### v3.2 Expert Edition (2026-03-04)
+
+- Added **7 Perfect Skill Principles** + System Architecture philosophy
+- Added **Full Package Output** — generates complete skill directory (not just 1 file)
+- Added **5 expert scripts**: skill_audit, skill_export, skill_stats, skill_compare, skill_scaffold
+- Added **7 slash commands** for quick script access
+- Added **scripts_guide.md** — detailed usage guide for all scripts
+- Added **OpenClaw AI Gateway** support
+- Added **⚡ Fast Track** — shortcut for simple skills
+- Achieved **100/100 S-tier** on self-audit
+
+### v3.0 Ultimate (2026-03-03)
+
+- Added blueprints, anti_patterns, prompt_engineering resources
+- Added simulate_skill.py
+
+### v2.0 Pro (2026-03-03)
+
+- Rewrote SKILL.md — Interview-driven (5 Phases)
+
+### v1.0 (2026-03-03)
+
+- Initial release
+
+---
+
+## ❓ FAQ
+
+**Q: Do I need to know how to code?**
+A: No. Skill Generator is designed for non-coders. Just describe your workflow in plain language.
+
+**Q: Global or Workspace install?**
+A: **Global** (`~/.gemini/antigravity/skills/`) for all projects. **Workspace** (`.agent/skills/`) for one project only.
+
+**Q: What does the generated skill include?**
+A: A complete package: SKILL.md + README.md + resources/ + examples/ + scripts/ + workflows/ + .gitignore
+
+**Q: Can I edit the skill after generation?**
+A: Yes. Open the SKILL.md file and edit directly, or ask the AI to modify it.
+
+**Q: What languages are supported?**
+A: Vietnamese and English. The AI interviews you in your language.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your branch: `git checkout -b feature/my-feature`
+3. Commit: `git commit -m "feat: add my feature"`
+4. Push: `git push origin feature/my-feature`
+5. Create a Pull Request
+
+---
+
+## 📄 License (EN)
+
+MIT — Free to use, modify, and share.
+
+---
+
+> 🇻🇳 **Developed by Thân Công Hải** — Skill Generator v3.2 Expert Edition
+> *"Turn ideas into AI Skills, turn ordinary people into AI architects."*
+
+---
+---
+
+# 🇻🇳 PHIÊN BẢN TIẾNG VIỆT (Vietnamese Version)
+
+---
+
 # 🧩 Skill Generator v3.2 Expert — Bộ Công Cụ Tạo AI Skill Hoàn Chỉnh
+
 <a href="https://unikorn.vn/p/skillgenerator?ref=embed" target="_blank"><img src="https://unikorn.vn/api/widgets/badge/skillgenerator/rank?theme=light&type=weekly" alt="Skill Generator - Hàng tuần" style="width: 250px; height: 64px;" width="250" height="64" /></a>
 > **Biến ý tưởng + quy trình công việc trong đầu bạn → AI Skill tự động hóa**
 > Dành cho Google Antigravity. Đánh giá: 🏆 100/100 S-tier.
