@@ -1,4 +1,4 @@
-# 🧩 Skill Generator v3.2 Expert — Complete AI Skill Building Toolkit
+# 🧩 Skill Generator v4.0 — Complete AI Skill Building Toolkit
 
 <a href="https://unikorn.vn/p/skillgenerator?ref=embed" target="_blank"><img src="https://unikorn.vn/api/widgets/badge/skillgenerator/rank?theme=light&type=weekly" alt="Skill Generator - Weekly" style="width: 250px; height: 64px;" width="250" height="64" /></a>
 
@@ -39,17 +39,22 @@ It helps you **create new AI Skills** — even if you **DON'T know** what a skil
 - 🏗️ Generate a **complete skill package** (not just 1 file!)
 - 🧪 Live test before deployment
 
-### Key Features (v3.2)
+### Key Features (v4.0)
 
 | Feature | Description |
 | --- | --- |
 | 🧠 **5-Phase Pipeline** | Interview → Extract → Detect → Generate → Test |
 | ⚡ **Fast Track** | Skip phases when user provides detailed workflow upfront |
-| 📦 **Full Package Output** | Generates complete skill directory: SKILL.md + README + resources + examples + scripts + workflows |
+| 🔗 **System Mode** | Build multi-skill pipelines with orchestrator (v4.0) |
+| 🔍 **Auto-Detect** | Scan codebase to suggest skills to create (v4.0) |
+| 🤖 **Auto-Optimize** | AI self-reviews + rewrites + Quality Score (v4.0) |
+| 🔀 **A/B Testing** | Generate 2 instruction variants, compare, pick best (v4.0) |
+| 📋 **Feedback Loop** | Continuous improvement after deployment (v4.0) |
+| 📦 **Full Package Output** | Complete skill directory: SKILL.md + README + resources + examples + scripts + CHANGELOG.md |
 | 🔧 **7 Python Scripts** | Audit, Export, Stats, Compare, Scaffold, Validate, Simulate |
-| ⚡ **7 Slash Commands** | `/skill-audit`, `/skill-export`, `/skill-stats`, and more |
+| ⚡ **8 Slash Commands** | `/skill-generate`, `/skill-audit`, `/skill-export`, and more |
 | 🌐 **8 Platforms** | Antigravity, Claude Code, Cursor, Windsurf, Cline, Copilot, OpenClaw, Aider |
-| 🏆 **100/100 S-tier** | Self-audited against 7 Perfect Skill Principles |
+| 🏆 **Grade A** | Audited against 7 Perfect Skill Principles |
 
 ### Who is this for?
 
@@ -300,6 +305,26 @@ skill-generator/                             (35+ files)
 ---
 
 ## 📜 Changelog (EN)
+
+### v4.0 (2026-03-04)
+
+- Added **🔗 System Mode** — build multi-skill pipelines with orchestrator + I/O contracts
+- Added **🔍 Auto-Detect Mode** — scan codebase to suggest skills to create
+- Added **🤖 Auto-Optimize** — AI self-reviews skill, rewrites weak sections, generates Quality Score
+- Added **🔀 A/B Variant Testing** — generate 2 instruction variants, dry-run both, pick best
+- Added **📋 Feedback Loop** — post-deploy feedback collection → continuous improvement
+- Added **📊 Version Tracking** — auto-generate CHANGELOG.md in every skill package
+- Fixed `validate_skill.py` YAML multi-line description parsing
+- Fixed validator to skip headings inside code blocks
+- Updated all version references to v4.0
+
+### v3.3 Modular Edition (2026-03-04)
+
+- Refactored SKILL.md into slim orchestrator + 5 phase files
+- Added **`/skill-generate`** slash command
+- Added **SKILL_FULL.md** for OpenClaw/single-file platforms
+- Added **platform-aware output** (Phase 4.0 asks target platform)
+- Updated README with bilingual installation guides
 
 ### v3.2 Expert Edition (2026-03-04)
 
@@ -933,6 +958,25 @@ skill-generator/                             (27+ files)
 ---
 
 ## 📚 Changelog
+
+### v4.0 (2026-03-04)
+
+- Thêm **🔗 System Mode** — xây hệ thống nhiều skill + orchestrator + I/O contract
+- Thêm **🔍 Auto-Detect Mode** — scan codebase để đề xuất skill cần tạo
+- Thêm **🤖 Auto-Optimize** — AI tự review + sửa + chấm Quality Score (/100)
+- Thêm **🔀 A/B Variant Testing** — sinh 2 cách viết Instructions, so sánh, chọn tốt nhất
+- Thêm **📋 Feedback Loop** — thu thập feedback sau deploy → cải thiện liên tục
+- Thêm **📊 Version Tracking** — tự tạo CHANGELOG.md cho mỗi skill package
+- Sửa `validate_skill.py` parse YAML multi-line description
+- Sửa validator bỏ qua headings trong code blocks
+
+### v3.3 Modular Edition (2026-03-04)
+
+- Tách SKILL.md thành slim orchestrator + 5 file phase riêng
+- Thêm **`/skill-generate`** — slash command tạo skill mới
+- Thêm **SKILL_FULL.md** — bản all-in-one cho OpenClaw
+- Thêm **câu hỏi nền tảng** (Phase 4.0) — tự nhận diện platform → sinh đúng format
+- Cập nhật README song ngữ + hướng dẫn cài đặt chi tiết
 
 ### v3.2 Expert Edition (2026-03-04)
 
