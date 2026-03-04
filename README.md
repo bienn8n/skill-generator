@@ -508,6 +508,7 @@ skill-generator/                             (25 files)
 | File | Mô tả | Khi nào đọc |
 | --- | --- | --- |
 | `SKILL.md` | Bộ não chính — AI đọc file này | Không cần đọc (AI tự xử lý) |
+| `resources/scripts_guide.md` | 🆕 Hướng dẫn sử dụng 7 scripts | Muốn dùng công cụ kiểm tra |
 | `resources/skill_template.md` | Template mẫu SKILL.md | Muốn hiểu cấu trúc skill |
 | `resources/blueprints.md` | 10 skill ăn liền | Cần ý tưởng nhanh |
 | `resources/checklist.md` | Checklist chất lượng | Kiểm tra skill trước deploy |
