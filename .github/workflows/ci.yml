@@ -1,0 +1,125 @@
+name: 🧩 Skill Generator CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: ✅ Validate SKILL.md
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate SKILL.md structure
+        run: python scripts/validate_skill.py .
+
+  audit:
+    name: 🔍 Audit 7 Principles
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run skill audit
+        run: python scripts/skill_audit.py .
+
+  stats:
+    name: 📊 Skill Stats
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Show skill stats
+        run: python scripts/skill_stats.py .
+
+  lint-markdown:
+    name: 📝 Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check SKILL.md exists
+        run: test -f SKILL.md
+
+      - name: Check README.md exists
+        run: test -f README.md
+
+      - name: Check required directories
+        run: |
+          test -d resources
+          test -d examples
+          test -d scripts
+
+  check-scripts:
+    name: 🔧 Scripts Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check Python syntax (all scripts)
+        run: |
+          python -m py_compile scripts/validate_skill.py
+          python -m py_compile scripts/simulate_skill.py
+          python -m py_compile scripts/skill_audit.py
+          python -m py_compile scripts/skill_export.py
+          python -m py_compile scripts/skill_stats.py
+          python -m py_compile scripts/skill_compare.py
+          python -m py_compile scripts/skill_scaffold.py
+          echo "✅ All 7 scripts compile successfully"
+
+  structure:
+    name: 📁 Project Structure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify project structure
+        run: |
+          echo "📂 Checking project structure..."
+          
+          # Required files
+          for file in SKILL.md README.md LICENSE; do
+            if [ -f "$file" ]; then
+              echo "  ✅ $file"
+            else
+              echo "  ❌ Missing: $file" && exit 1
+            fi
+          done
+          
+          # Required directories
+          for dir in resources examples scripts; do
+            if [ -d "$dir" ]; then
+              count=$(find "$dir" -type f | wc -l)
+              echo "  ✅ $dir/ ($count files)"
+            else
+              echo "  ❌ Missing: $dir/" && exit 1
+            fi
+          done
+          
+          # Count total
+          total=$(find . -type f -not -path './.git/*' | wc -l)
+          echo ""
+          echo "📊 Total: $total files"
+          echo "✅ Project structure verified!"
