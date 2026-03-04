@@ -70,25 +70,65 @@ It helps you **create new AI Skills** — even if you **DON'T know** what a skil
 - Python 3.8+ (optional, for scripts)
 - Git (recommended)
 
-### Quick Install (1 command)
+### 🌟 Antigravity (Recommended)
 
-| Platform | Command (macOS/Linux) |
-| --- | --- |
-| **Antigravity (Global)** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git ~/.gemini/antigravity/skills/skill-generator` |
-| **Antigravity (Workspace)** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .agent/skills/skill-generator` |
-| **Claude Code** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .claude/commands/skill-generator` |
-| **Cursor** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .cursor/rules/skill-generator` |
-| **Windsurf** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .windsurf/rules/skill-generator` |
-| **Cline** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .clinerules/skill-generator` |
-| **Copilot** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git .github/skill-generator` |
-| **OpenClaw** | `git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git` → Copy SKILL.md into Agent System Prompt |
+**Global Installation** — Available in ALL projects:
 
-### Windows Installation
+```bash
+# macOS / Linux
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git \
+  ~/.gemini/antigravity/skills/skill-generator
+```
 
 ```powershell
-# Antigravity (Global)
-git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git "$env:USERPROFILE\.gemini\antigravity\skills\skill-generator"
+# Windows (PowerShell)
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git `
+  "$env:USERPROFILE\.gemini\antigravity\skills\skill-generator"
 ```
+
+**Workspace Installation** — Only in current project:
+
+```bash
+cd your-project/
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git \
+  .agent/skills/skill-generator
+```
+
+**After install:** Open a new chat and type `/skill-generate` to verify.
+
+### 🤖 OpenClaw AI Gateway
+
+OpenClaw uses a different approach — you paste the skill content into the Agent System Prompt.
+
+**Step 1:** Clone the repository
+
+```bash
+git clone https://github.com/marketingjuliancongdanh79-pixel/skill-generator.git
+cd skill-generator
+```
+
+**Step 2:** Open the OpenClaw Admin Panel → **Agents** → Select your agent
+
+**Step 3:** Copy the contents of `SKILL.md` into the **System Prompt** field
+
+**Step 4:** Add the `phases/` folder contents as additional context:
+
+- Upload `phases/phase1_interview.md` through `phases/phase5_test.md`
+- Or concatenate them into the System Prompt below the main SKILL.md
+
+**Step 5:** Save and test with: *"Tạo cho tao 1 skill tự soạn email báo giá"*
+
+> ⚠️ **Note:** OpenClaw has token limits. If System Prompt is too long, use only `SKILL.md` (slim version, ~270 lines) — the AI will still work, just without deep phase references.
+
+### Other Platforms
+
+| Platform | Command |
+| --- | --- |
+| **Claude Code** | `git clone ...skill-generator.git .claude/commands/skill-generator` |
+| **Cursor** | `git clone ...skill-generator.git .cursor/rules/skill-generator` |
+| **Windsurf** | `git clone ...skill-generator.git .windsurf/rules/skill-generator` |
+| **Cline** | `git clone ...skill-generator.git .clinerules/skill-generator` |
+| **Copilot** | `git clone ...skill-generator.git .github/skill-generator` |
 
 ### Update to latest version
 
@@ -137,12 +177,13 @@ python scripts/skill_scaffold.py my-new-skill --full
 python scripts/skill_scaffold.py my-new-skill --interactive
 ```
 
-### ⚡ Slash Commands
+### ⚡ Slash Commands (8 commands)
 
 Type `/` in your AI chat to access these commands:
 
 | Command | Description |
 | --- | --- |
+| `/skill-generate` | 🧠 **Create new skill from idea** (5-Phase interview pipeline) |
 | `/skill-audit` | 🔍 Audit skill against 7 principles |
 | `/skill-export` | 📦 Export to other platforms |
 | `/skill-stats` | 📊 View stats + Cognitive Load |
@@ -156,13 +197,21 @@ Type `/` in your AI chat to access these commands:
 ## 📁 Project Structure
 
 ```text
-skill-generator/                             (27+ files)
-├── SKILL.md                                ← 🧠 Core brain (1200+ lines, 5 Phases)
+skill-generator/                             (35+ files)
+├── SKILL.md                                ← 🧠 Slim orchestrator (~270 lines)
 ├── README.md                               ← 📖 This file
 ├── .gitignore                              ← 🔒 Git config
+├── .pylintrc                               ← 🔧 Python lint config
+│
+├── phases/                                 ← 🎬 Detailed phase instructions (5 files)
+│   ├── phase1_interview.md                 ← 🎤 Phase 1: Smart interview
+│   ├── phase2_extract.md                   ← 🔬 Phase 2: Knowledge extraction
+│   ├── phase3_detect.md                    ← 🔎 Phase 3: Pattern detection
+│   ├── phase4_generate.md                  ← 🏗️ Phase 4: Skill generation
+│   └── phase5_test.md                      ← 🧪 Phase 5: Test & refine
 │
 ├── resources/                              ← 📚 Reference docs (13 files)
-│   ├── scripts_guide.md                    ← 🆕 Guide for all 7 scripts
+│   ├── scripts_guide.md                    ← Guide for all 7 scripts
 │   ├── skill_template.md                   ← Standard SKILL.md template
 │   ├── checklist.md                        ← 2-tier quality checklist
 │   ├── advanced_patterns.md                ← 6 architecture patterns
@@ -184,20 +233,24 @@ skill-generator/                             (27+ files)
 ├── scripts/                                ← 🔧 Python tools (7 files)
 │   ├── validate_skill.py                   ← Validate SKILL.md structure
 │   ├── simulate_skill.py                   ← Simulate dry-run
-│   ├── skill_audit.py                      ← 🆕 Audit 7 principles, grade S-tier
-│   ├── skill_export.py                     ← 🆕 Export to 6 platforms
-│   ├── skill_stats.py                      ← 🆕 Stats + Cognitive Load
-│   ├── skill_compare.py                    ← 🆕 Compare 2 versions
-│   └── skill_scaffold.py                   ← 🆕 Scaffold new skill
+│   ├── skill_audit.py                      ← Audit 7 principles, grade S-tier
+│   ├── skill_export.py                     ← Export to 6 platforms
+│   ├── skill_stats.py                      ← Stats + Cognitive Load
+│   ├── skill_compare.py                    ← Compare 2 versions
+│   └── skill_scaffold.py                   ← Scaffold new skill
 │
-└── .agents/workflows/                      ← ⚡ Slash commands (7 files)
-    ├── skill-audit.md                      ← /skill-audit
-    ├── skill-export.md                     ← /skill-export
-    ├── skill-stats.md                      ← /skill-stats
-    ├── skill-compare.md                    ← /skill-compare
-    ├── skill-scaffold.md                   ← /skill-scaffold
-    ├── skill-validate.md                   ← /skill-validate
-    └── skill-simulate.md                   ← /skill-simulate
+├── .agents/workflows/                      ← ⚡ Slash commands (8 files)
+│   ├── skill-generate.md                   ← 🆕 /skill-generate (create from idea)
+│   ├── skill-audit.md                      ← /skill-audit
+│   ├── skill-export.md                     ← /skill-export
+│   ├── skill-stats.md                      ← /skill-stats
+│   ├── skill-compare.md                    ← /skill-compare
+│   ├── skill-scaffold.md                   ← /skill-scaffold
+│   ├── skill-validate.md                   ← /skill-validate
+│   └── skill-simulate.md                   ← /skill-simulate
+│
+└── .github/workflows/                      ← 🔄 CI/CD (1 file)
+    └── ci.yml                              ← 6 automated checks on push
 ```
 
 ---
@@ -248,12 +301,22 @@ skill-generator/                             (27+ files)
 
 ## 📜 Changelog (EN)
 
+### v3.3 Modular Edition (2026-03-04)
+
+- **Split SKILL.md** into modular architecture: 1316 lines → 270 slim + 5 `phases/` files
+- Added `phases/` directory — detailed phase instructions as separate files
+- Added `/skill-generate` slash command — create skills from ideas (5-Phase interview)
+- Added **GitHub Actions CI** — 6 automated checks on push
+- Added `.pylintrc` — Python lint configuration
+- Updated bilingual README (EN + VN) with detailed Antigravity + OpenClaw install guides
+- Total: **8 slash commands** + **7 Python scripts** + **6 CI checks**
+
 ### v3.2 Expert Edition (2026-03-04)
 
 - Added **7 Perfect Skill Principles** + System Architecture philosophy
 - Added **Full Package Output** — generates complete skill directory (not just 1 file)
 - Added **5 expert scripts**: skill_audit, skill_export, skill_stats, skill_compare, skill_scaffold
-- Added **7 slash commands** for quick script access
+- Added **8 slash commands** for quick script access
 - Added **scripts_guide.md** — detailed usage guide for all scripts
 - Added **OpenClaw AI Gateway** support
 - Added **⚡ Fast Track** — shortcut for simple skills
@@ -783,12 +846,13 @@ python scripts/skill_scaffold.py my-new-skill --full
 python scripts/skill_scaffold.py my-new-skill --interactive
 ```
 
-### ⚡ Slash Commands
+### ⚡ Slash Commands (8 lệnh)
 
 Gõ `/` trong chat AI để truy cập nhanh:
 
 | Lệnh | Chức năng |
 | --- | --- |
+| `/skill-generate` | 🧠 **Tạo skill mới từ ý tưởng** (phỏng vấn 5 Phase) |
 | `/skill-audit` | 🔍 Audit skill theo 7 nguyên tắc |
 | `/skill-export` | 📦 Export ra các nền tảng khác |
 | `/skill-stats` | 📊 Xem thống kê + Cognitive Load |
@@ -802,13 +866,21 @@ Gõ `/` trong chat AI để truy cập nhanh:
 ## 📁 Cấu trúc dự án
 
 ```text
-skill-generator/                             (27+ files)
-├── SKILL.md                                ← 🧠 Bộ não chính (1200+ dòng, 5 Phase)
+skill-generator/                             (35+ files)
+├── SKILL.md                                ← 🧠 Slim orchestrator (~270 dòng)
 ├── README.md                               ← 📖 File này
 ├── .gitignore                              ← 🔒 Git config
+├── .pylintrc                               ← 🔧 Python lint config
+│
+├── phases/                                 ← 🎬 Hướng dẫn chi tiết từng Phase (5 files)
+│   ├── phase1_interview.md                 ← 🎤 Phase 1: Phỏng vấn thông minh
+│   ├── phase2_extract.md                   ← 🔬 Phase 2: Trích xuất thông tin
+│   ├── phase3_detect.md                    ← 🔎 Phase 3: Phát hiện pattern
+│   ├── phase4_generate.md                  ← 🏗️ Phase 4: Sinh skill package
+│   └── phase5_test.md                      ← 🧪 Phase 5: Test & refine
 │
 ├── resources/                              ← 📚 Tài liệu tham khảo (13 files)
-│   ├── scripts_guide.md                    ← 🆕 Hướng dẫn sử dụng 7 scripts
+│   ├── scripts_guide.md                    ← Hướng dẫn sử dụng 7 scripts
 │   ├── skill_template.md                   ← Template chuẩn SKILL.md
 │   ├── checklist.md                        ← Checklist 2-tier (Basic + Expert)
 │   ├── advanced_patterns.md                ← 6 pattern kiến trúc nâng cao
@@ -830,20 +902,24 @@ skill-generator/                             (27+ files)
 ├── scripts/                                ← 🔧 Công cụ Python (7 files)
 │   ├── validate_skill.py                   ← Kiểm tra SKILL.md hợp lệ
 │   ├── simulate_skill.py                   ← Mô phỏng chạy thử skill
-│   ├── skill_audit.py                      ← 🆕 Audit 7 nguyên tắc, chấm S-tier
-│   ├── skill_export.py                     ← 🆕 Export ra 6 nền tảng
-│   ├── skill_stats.py                      ← 🆕 Thống kê + Cognitive Load
-│   ├── skill_compare.py                    ← 🆕 So sánh 2 phiên bản
-│   └── skill_scaffold.py                   ← 🆕 Tạo skeleton skill mới
+│   ├── skill_audit.py                      ← Audit 7 nguyên tắc, chấm S-tier
+│   ├── skill_export.py                     ← Export ra 6 nền tảng
+│   ├── skill_stats.py                      ← Thống kê + Cognitive Load
+│   ├── skill_compare.py                    ← So sánh 2 phiên bản
+│   └── skill_scaffold.py                   ← Tạo skeleton skill mới
 │
-└── .agents/workflows/                      ← ⚡ Slash commands (7 files)
-    ├── skill-audit.md                      ← /skill-audit
-    ├── skill-export.md                     ← /skill-export
-    ├── skill-stats.md                      ← /skill-stats
-    ├── skill-compare.md                    ← /skill-compare
-    ├── skill-scaffold.md                   ← /skill-scaffold
-    ├── skill-validate.md                   ← /skill-validate
-    └── skill-simulate.md                   ← /skill-simulate
+├── .agents/workflows/                      ← ⚡ Slash commands (8 files)
+│   ├── skill-generate.md                   ← 🆕 /skill-generate (tạo từ ý tưởng)
+│   ├── skill-audit.md                      ← /skill-audit
+│   ├── skill-export.md                     ← /skill-export
+│   ├── skill-stats.md                      ← /skill-stats
+│   ├── skill-compare.md                    ← /skill-compare
+│   ├── skill-scaffold.md                   ← /skill-scaffold
+│   ├── skill-validate.md                   ← /skill-validate
+│   └── skill-simulate.md                   ← /skill-simulate
+│
+└── .github/workflows/                      ← 🔄 CI/CD (1 file)
+    └── ci.yml                              ← 6 kiểm tra tự động khi push
 ```
 
 ---
@@ -880,6 +956,16 @@ skill-generator/                             (27+ files)
 ---
 
 ## 📚 Changelog
+
+### v3.3 Modular Edition (2026-03-04)
+
+- **Tách SKILL.md** thành kiến trúc modular: 1316 dòng → 270 dòng slim + 5 file `phases/`
+- Thêm thư mục **`phases/`** — hướng dẫn chi tiết từng Phase riêng biệt
+- Thêm slash command **`/skill-generate`** — tạo skill từ ý tưởng (phỏng vấn 5 Phase)
+- Thêm **GitHub Actions CI** — 6 kiểm tra tự động khi push
+- Thêm **`.pylintrc`** — Python lint config
+- Cập nhật README song ngữ (EN + VN) với hướng dẫn cài đặt chi tiết Antigravity + OpenClaw
+- Tổng cộng: **8 slash commands** + **7 scripts Python** + **6 CI checks**
 
 ### v3.2 Expert Edition (2026-03-04)
 
