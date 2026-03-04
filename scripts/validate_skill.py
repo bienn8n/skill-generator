@@ -128,6 +128,7 @@ def parse_frontmatter(content):
 def find_sections(body):
     """
     Tìm tất cả heading sections (# Level 1) trong body.
+    Bỏ qua headings nằm trong fenced code blocks (``` ... ```).
     
     Returns:
         dict: {section_name_lowercase: section_content}
@@ -135,10 +136,24 @@ def find_sections(body):
     sections = {}
     current_section = None
     current_content = []
+    in_code_block = False
     
     for line in body.split('\n'):
+        stripped = line.strip()
+        
+        # Phát hiện bắt đầu/kết thúc code block
+        if stripped.startswith('```'):
+            in_code_block = not in_code_block
+            current_content.append(line)
+            continue
+        
+        # Bỏ qua headings trong code block
+        if in_code_block:
+            current_content.append(line)
+            continue
+        
         # Tìm heading level 1 (# Title)
-        heading_match = re.match(r'^#\s+(.+)$', line.strip())
+        heading_match = re.match(r'^#\s+(.+)$', stripped)
         if heading_match:
             # Lưu section trước
             if current_section:
@@ -156,9 +171,11 @@ def find_sections(body):
 
 
 def count_examples(body):
-    """Đếm số ví dụ (heading ## Ví dụ hoặc ## Example)."""
+    """Đếm số ví dụ (heading ## Ví dụ hoặc ## Example). Bỏ qua code blocks."""
+    # Xóa nội dung trong code blocks trước khi đếm
+    clean_body = re.sub(r'```.*?```', '', body, flags=re.DOTALL)
     pattern = r'^##\s+(?:Ví dụ|Example)\s*\d*'
-    return len(re.findall(pattern, body, re.MULTILINE | re.IGNORECASE))
+    return len(re.findall(pattern, clean_body, re.MULTILINE | re.IGNORECASE))
 
 
 def count_constraints(body):
