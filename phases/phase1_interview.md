@@ -7,6 +7,39 @@ Thời lượng: 5-10 câu hỏi tùy độ phức tạp.
 > phù hợp, và `resources/industry_questions.md` cho câu hỏi chuyên ngành.
 > Xem `resources/anti_patterns.md` để tránh lỗi phổ biến.
 
+### 1.0. Auto-Detect Mode — Scan codebase đề xuất skill (v4.0)
+
+**TRƯỚC KHI phỏng vấn**, hỏi user:
+
+> "Anh/chị có muốn em **scan project hiện tại** để đề xuất skill cần tạo không?
+>
+> - A) Có — scan project rồi đề xuất
+> - B) Không — em có ý tưởng sẵn rồi"
+
+**Nếu chọn A (Auto-Detect):**
+
+1. Scan cấu trúc project:
+   - Đọc `package.json` / `requirements.txt` / `Makefile` → xác định tech stack
+   - Đọc `.github/workflows/` → xác định CI/CD flow
+   - Đọc `scripts/` → xác định automation hiện có
+   - Đọc `README.md` → hiểu mục đích project
+
+2. Phân tích và đề xuất (tối đa 5 skill):
+
+> "📊 Em đã scan project, đây là các skill tiềm năng:
+>
+> | # | Skill đề xuất | Lý do | Độ phức tạp |
+> | --- | --- | --- | --- |
+> | 1 | `[tên-skill-1]` | [Phát hiện pattern X trong code] | 🟢 Đơn giản |
+> | 2 | `[tên-skill-2]` | [Thấy script Y chưa có quy trình chuẩn] | 🟡 Trung bình |
+> | 3 | `[tên-skill-3]` | [CI/CD cần tự động hóa bước Z] | 🟠 Phức tạp |
+>
+> Anh/chị muốn tạo skill nào? (chọn số hoặc mô tả ý tưởng khác)"
+
+1. User chọn → chuyển sang phỏng vấn tiêu chuẩn (1.1+)
+
+**Nếu chọn B → skip, bắt đầu phỏng vấn bình thường.**
+
 ### 1.1. Mở đầu (Ice-breaker)
 
 Bắt đầu bằng câu hỏi mở, thân thiện:

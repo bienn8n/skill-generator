@@ -76,6 +76,7 @@ Phỏng vấn → Trích xuất → Phát hiện Pattern → Sinh Skill → Test
 | User mô tả RÕ RÀNG flow + rules + I/O | → **Fast Track**: xác nhận lại 1 lần rồi sinh skill | Phase 4 → 5 |
 | User có ý tưởng nhưng chưa rõ chi tiết | → **Standard**: phỏng vấn ngắn | Phase 1 (ngắn) → 3 → 4 → 5 |
 | User chỉ biết "muốn tự động hóa" | → **Full Interview**: phỏng vấn đầy đủ | Phase 1 → 2 → 3 → 4 → 5 |
+| User mô tả workflow ≥3 bước tách rời | → **System Mode**: tạo hệ thống skill | Phase 1 → 2 → 3 → 4S → 5 |
 
 **Cách nhận diện Fast Track:**
 
@@ -88,6 +89,54 @@ Phỏng vấn → Trích xuất → Phát hiện Pattern → Sinh Skill → Test
 1. Tóm tắt lại những gì user đã cung cấp (dạng bảng Phase 2)
 2. Hỏi: "Anh/chị có bổ sung quy tắc hay trường hợp đặc biệt gì không?"
 3. Nhảy thẳng đến Phase 4 (Sinh Skill)
+
+---
+
+## 🔗 System Mode — Xây hệ thống nhiều skill (v4.0)
+
+**Khi nào kích hoạt:**
+
+- User mô tả workflow ≥3 bước, mỗi bước có thể hoạt động độc lập
+- User nói: "tạo hệ thống...", "pipeline...", "nhiều skill phối hợp..."
+- Phát hiện ≥3 phase khác nhau với Input/Output riêng biệt
+
+**Quy trình System Mode:**
+
+1. **Phỏng vấn toàn bộ workflow** (Phase 1 mở rộng):
+   - "Mô tả toàn bộ quy trình từ A-Z cho em"
+   - Vẽ sơ đồ flow: Bước 1 → Bước 2 → ... → Bước N
+
+2. **Xác định Skill Boundaries** — tách thành N skill:
+
+   | Dấu hiệu cần TÁCH | Dấu hiệu nên GỘP |
+   | --- | --- |
+   | Bước có thể chạy độc lập | Bước phụ thuộc nhau 100% |
+   | Input/Output khác loại | Cùng input/output |
+   | Người dùng khác nhau | Cùng 1 người dùng |
+   | Thời điểm chạy khác nhau | Chạy liên tục |
+
+3. **Định nghĩa I/O Contract** giữa các skill:
+
+   ```text
+   Skill A: data-analyzer
+     Output: { analysis: {...}, recommendations: [...] }
+            ↓
+   Skill B: action-executor
+     Input:  { recommendations: [...] }
+     Output: { actions_taken: [...], results: {...} }
+            ↓
+   Skill C: quality-auditor
+     Input:  { actions_taken: [...] }
+     Output: { score: number, feedback: [...] }
+   ```
+
+4. **Sinh N skills + 1 Orchestrator**:
+   - Mỗi skill con: SKILL.md riêng với Input/Output rõ ràng
+   - 1 Orchestrator Skill: gọi skill con theo thứ tự, truyền output → input
+
+5. **Test pipeline end-to-end**: Dry run toàn bộ chuỗi
+
+> **Tham khảo thêm:** `resources/composition_cookbook.md`, `resources/advanced_patterns.md`
 
 ---
 
@@ -182,7 +231,11 @@ Mục tiêu: Đảm bảo skill hoạt động đúng ý user TRƯỚC KHI deplo
 2. Dry Run — chạy thử với tình huống thực tế
 3. Chỉnh sửa theo feedback user
 4. Validation tự động (chạy checklist)
-5. Deploy & hướng dẫn sử dụng
+5. **[v4.0]** Auto-Optimize — AI tự review + sửa + chấm Quality Score
+6. **[v4.0]** A/B Variant Testing — sinh 2 cách viết, so sánh, chọn tốt nhất
+7. **[v4.0]** Version Tracking — tự tạo CHANGELOG.md cho skill
+8. **[v4.0]** Feedback Loop — thu thập feedback sau deploy → cải thiện
+9. Deploy & hướng dẫn sử dụng
 
 > **Tham khảo thêm:** `resources/checklist.md`, `resources/anti_patterns.md`
 

@@ -79,6 +79,7 @@ Phỏng vấn → Trích xuất → Phát hiện Pattern → Sinh Skill → Test
 | User mô tả RÕ RÀNG flow + rules + I/O | → **Fast Track**: xác nhận lại 1 lần rồi sinh skill | Phase 4 → 5 |
 | User có ý tưởng nhưng chưa rõ chi tiết | → **Standard**: phỏng vấn ngắn | Phase 1 (ngắn) → 3 → 4 → 5 |
 | User chỉ biết "muốn tự động hóa" | → **Full Interview**: phỏng vấn đầy đủ | Phase 1 → 2 → 3 → 4 → 5 |
+| User mô tả workflow ≥3 bước tách rời | → **System Mode**: tạo hệ thống skill | Phase 1 → 2 → 3 → 4S → 5 |
 
 **Cách nhận diện Fast Track:**
 
@@ -94,6 +95,54 @@ Phỏng vấn → Trích xuất → Phát hiện Pattern → Sinh Skill → Test
 
 ---
 
+## 🔗 System Mode — Xây hệ thống nhiều skill (v4.0)
+
+**Khi nào kích hoạt:**
+
+- User mô tả workflow ≥3 bước, mỗi bước có thể hoạt động độc lập
+- User nói: "tạo hệ thống...", "pipeline...", "nhiều skill phối hợp..."
+- Phát hiện ≥3 phase khác nhau với Input/Output riêng biệt
+
+**Quy trình System Mode:**
+
+1. **Phỏng vấn toàn bộ workflow** (Phase 1 mở rộng):
+   - "Mô tả toàn bộ quy trình từ A-Z cho em"
+   - Vẽ sơ đồ flow: Bước 1 → Bước 2 → ... → Bước N
+
+2. **Xác định Skill Boundaries** — tách thành N skill:
+
+   | Dấu hiệu cần TÁCH | Dấu hiệu nên GỘP |
+   | --- | --- |
+   | Bước có thể chạy độc lập | Bước phụ thuộc nhau 100% |
+   | Input/Output khác loại | Cùng input/output |
+   | Người dùng khác nhau | Cùng 1 người dùng |
+   | Thời điểm chạy khác nhau | Chạy liên tục |
+
+3. **Định nghĩa I/O Contract** giữa các skill:
+
+   ```text
+   Skill A: data-analyzer
+     Output: { analysis: {...}, recommendations: [...] }
+            ↓
+   Skill B: action-executor
+     Input:  { recommendations: [...] }
+     Output: { actions_taken: [...], results: {...} }
+            ↓
+   Skill C: quality-auditor
+     Input:  { actions_taken: [...] }
+     Output: { score: number, feedback: [...] }
+   ```
+
+4. **Sinh N skills + 1 Orchestrator**:
+   - Mỗi skill con: SKILL.md riêng với Input/Output rõ ràng
+   - 1 Orchestrator Skill: gọi skill con theo thứ tự, truyền output → input
+
+5. **Test pipeline end-to-end**: Dry run toàn bộ chuỗi
+
+> **Tham khảo thêm:** `resources/composition_cookbook.md`, `resources/advanced_patterns.md`
+
+---
+
 ## Phase 1: 🎤 Deep Interview — Phỏng vấn thông minh
 
 ## Phase 1: 🎤 Deep Interview — Phỏng vấn thông minh
@@ -104,6 +153,39 @@ Thời lượng: 5-10 câu hỏi tùy độ phức tạp.
 > **Lưu ý quan trọng:** Tham khảo `resources/interview_questions.md` để chọn câu hỏi
 > phù hợp, và `resources/industry_questions.md` cho câu hỏi chuyên ngành.
 > Xem `resources/anti_patterns.md` để tránh lỗi phổ biến.
+
+### 1.0. Auto-Detect Mode — Scan codebase đề xuất skill (v4.0)
+
+**TRƯỚC KHI phỏng vấn**, hỏi user:
+
+> "Anh/chị có muốn em **scan project hiện tại** để đề xuất skill cần tạo không?
+>
+> - A) Có — scan project rồi đề xuất
+> - B) Không — em có ý tưởng sẵn rồi"
+
+**Nếu chọn A (Auto-Detect):**
+
+1. Scan cấu trúc project:
+   - Đọc `package.json` / `requirements.txt` / `Makefile` → xác định tech stack
+   - Đọc `.github/workflows/` → xác định CI/CD flow
+   - Đọc `scripts/` → xác định automation hiện có
+   - Đọc `README.md` → hiểu mục đích project
+
+2. Phân tích và đề xuất (tối đa 5 skill):
+
+> "📊 Em đã scan project, đây là các skill tiềm năng:
+>
+> | # | Skill đề xuất | Lý do | Độ phức tạp |
+> | --- | --- | --- | --- |
+> | 1 | `[tên-skill-1]` | [Phát hiện pattern X trong code] | 🟢 Đơn giản |
+> | 2 | `[tên-skill-2]` | [Thấy script Y chưa có quy trình chuẩn] | 🟡 Trung bình |
+> | 3 | `[tên-skill-3]` | [CI/CD cần tự động hóa bước Z] | 🟠 Phức tạp |
+>
+> Anh/chị muốn tạo skill nào? (chọn số hoặc mô tả ý tưởng khác)"
+
+1. User chọn → chuyển sang phỏng vấn tiêu chuẩn (1.1+)
+
+**Nếu chọn B → skip, bắt đầu phỏng vấn bình thường.**
 
 ### 1.1. Mở đầu (Ice-breaker)
 
@@ -1037,14 +1119,128 @@ Chạy checklist kiểm tra chất lượng (đọc `resources/checklist.md`):
 - [ ] Atomic (1 skill = 1 việc)
 - [ ] Không hardcode secrets
 
-### 5.5. Deploy & Hướng dẫn
+### 5.5. Auto-Optimize — AI tự cải thiện skill (v4.0)
 
-Sau khi pass validation:
+Sau khi sinh xong skill, **TỰ ĐỘNG chạy review** trước khi giao cho user:
+
+**Bước A: Self-Review Checklist**
+
+Đọc lại SKILL.md vừa sinh và kiểm tra:
+
+| # | Kiểm tra | Cách fix nếu lỗi |
+| --- | --- | --- |
+| 1 | Instructions có bước nào dùng từ mơ hồ? ("xử lý", "kiểm tra") | Thay bằng Semantic Precision verbs |
+| 2 | Có ≥2 ví dụ với Input/Output đầy đủ? | Thêm ví dụ edge case |
+| 3 | Error handling ở mỗi bước rẽ nhánh? | Thêm "⚠️ Nếu lỗi → ..." |
+| 4 | Constraints đủ mạnh? (có KHÔNG ĐƯỢC + LUÔN LUÔN) | Thêm safety guardrails |
+| 5 | Description có ≥3 trigger phrases? | Thêm từ khóa kích hoạt |
+| 6 | Examples có Thought Process? | Thêm lý giải AI nghĩ gì |
+
+**Bước B: Auto-Rewrite**
+
+Nếu phát hiện ≥1 vấn đề:
+
+> "Em phát hiện [N] điểm có thể cải thiện:
+>
+> 1. [Vấn đề 1] → Em sẽ sửa thành [gợi ý]
+> 2. [Vấn đề 2] → Em sẽ sửa thành [gợi ý]
+>
+> Anh/chị đồng ý em tự sửa luôn không?"
+
+- Nếu đồng ý → tự sửa trực tiếp
+- Nếu không → giữ nguyên, ghi nhận
+
+**Bước C: Quality Score**
+
+Sau khi optimize, tự chấm điểm:
+
+```text
+📊 Quality Score: [X]/100
+  - Semantic Precision:  [_]/20
+  - Example Coverage:    [_]/20
+  - Error Recovery:      [_]/20
+  - Constraint Strength: [_]/20
+  - Trigger Accuracy:    [_]/20
+```
+
+### 5.6. A/B Variant Testing — So sánh 2 cách viết (v4.0)
+
+Cho skill phức tạp (Complexity ≥13), sinh **2 variant** Instructions:
+
+**Variant A:** Step-by-step tuyến tính (1 → 2 → 3 → ...)
+**Variant B:** Decision Tree (if/else branching)
+
+> "Em đã tạo 2 phiên bản Instructions. Để em dry run cả 2 với cùng input nhé."
+
+Dry run cả 2, so sánh:
+
+| Tiêu chí | Variant A | Variant B |
+| --- | --- | --- |
+| Output chính xác? | ✅/❌ | ✅/❌ |
+| Xử lý edge case? | ✅/❌ | ✅/❌ |
+| Dễ hiểu? | ⭐⭐⭐ | ⭐⭐⭐ |
+| Tốc độ xử lý? | Nhanh/Chậm | Nhanh/Chậm |
+
+→ Chọn variant tốt hơn, hoặc merge ưu điểm cả 2.
+
+### 5.7. Version Tracking — Lịch sử phiên bản (v4.0)
+
+Khi tạo skill MỚI → tự tạo `CHANGELOG.md` trong package:
+
+```markdown
+# Changelog
+
+## v1.0.0 (YYYY-MM-DD)
+- 🎉 Initial release
+- Generated by Skill Generator v4.0
+- Complexity: [Đơn giản/Trung bình/Phức tạp]
+- Quality Score: [X]/100
+```
+
+Khi SỬA skill → append entry:
+
+```markdown
+## v1.1.0 (YYYY-MM-DD)
+- [Mô tả thay đổi]
+- Reason: [User feedback / Auto-optimize / Bug fix]
+```
+
+### 5.8. Feedback Loop — Cải thiện liên tục (v4.0)
+
+Sau khi deploy, đưa hướng dẫn thu thập feedback:
+
+> "📋 **Sau 1 tuần sử dụng**, anh/chị chạy lệnh này để cải thiện skill:
+>
+> Nói với AI: 'Review skill `<tên-skill>`, em dùng được [X] ngày rồi'
+>
+> AI sẽ hỏi:
+>
+> 1. Skill hoạt động đúng ý bao nhiêu %?
+> 2. Có tình huống nào skill xử lý sai không?
+> 3. Có quy tắc mới cần thêm không?"
+
+**Quy tắc xử lý feedback:**
+
+| Feedback | Hành động | File sửa |
+| --- | --- | --- |
+| "Output format sai" | Sửa Examples + thêm Output Format Anchoring | SKILL.md |
+| "Thiếu trường hợp X" | Thêm ví dụ edge case + logic rẽ nhánh | SKILL.md + examples/ |
+| "Bước Y không cần thiết" | Xóa/gộp step | SKILL.md |
+| "Cần thêm quy tắc Z" | Thêm Constraint | SKILL.md |
+| "Skill hay, không cần sửa" | Ghi nhận v1.0 stable | CHANGELOG.md |
+
+Sau mỗi lần sửa → bump version trong `CHANGELOG.md`.
+
+### 5.9. Deploy & Hướng dẫn
+
+Sau khi pass validation + auto-optimize:
 
 > "✅ Skill `<tên-skill>` đã sẵn sàng!
 >
 > 📁 **Đã lưu tại:** `<đường-dẫn-đầy-đủ>`
 > 📄 **Gồm:** [Danh sách file]
+> 📊 **Quality Score:** [X]/100
+> 📋 **Version:** v1.0.0
 >
 > 🚀 **Cách sử dụng:**
 >
@@ -1052,7 +1248,9 @@ Sau khi pass validation:
 > - Nói: '[một trong các trigger phrases]'
 > - AI sẽ tự động thực hiện theo quy trình
 >
-> 🧪 **Test thử:** Mở chat mới và thử ngay câu: '[câu test mẫu]'"
+> 🧪 **Test thử:** Mở chat mới và thử ngay câu: '[câu test mẫu]'
+>
+> 📋 **Feedback:** Sau 1 tuần, nói 'review skill `<tên-skill>`' để cải thiện"
 
 ---
 
@@ -1064,7 +1262,11 @@ Mục tiêu: Đảm bảo skill hoạt động đúng ý user TRƯỚC KHI deplo
 2. Dry Run — chạy thử với tình huống thực tế
 3. Chỉnh sửa theo feedback user
 4. Validation tự động (chạy checklist)
-5. Deploy & hướng dẫn sử dụng
+5. **[v4.0]** Auto-Optimize — AI tự review + sửa + chấm Quality Score
+6. **[v4.0]** A/B Variant Testing — sinh 2 cách viết, so sánh, chọn tốt nhất
+7. **[v4.0]** Version Tracking — tự tạo CHANGELOG.md cho skill
+8. **[v4.0]** Feedback Loop — thu thập feedback sau deploy → cải thiện
+9. Deploy & hướng dẫn sử dụng
 
 > **Tham khảo thêm:** `resources/checklist.md`, `resources/anti_patterns.md`
 
