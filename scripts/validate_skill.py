@@ -93,15 +93,34 @@ def parse_frontmatter(content):
     yaml_content = match.group(1)
     body = match.group(2)
     
-    # Parse YAML đơn giản (không cần thư viện PyYAML)
+    # Parse YAML đơn giản (hỗ trợ multi-line block scalar `|` và `>`)
     frontmatter = {}
-    for line in yaml_content.strip().split('\n'):
-        line = line.strip()
-        if ':' in line and not line.startswith('#'):
-            key, _, value = line.partition(':')
+    lines = yaml_content.strip().split('\n')
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        stripped = line.strip()
+        if ':' in stripped and not stripped.startswith('#'):
+            key, _, value = stripped.partition(':')
             key = key.strip()
             value = value.strip().strip('"').strip("'")
+            
+            # Xử lý multi-line block scalar (| hoặc >)
+            if value in ('|', '>', '|+', '|-', '>+', '>-'):
+                multi_lines = []
+                i += 1
+                while i < len(lines):
+                    next_line = lines[i]
+                    # Dòng tiếp theo phải có indent (bắt đầu bằng space/tab)
+                    if next_line and (next_line[0] == ' ' or next_line[0] == '\t'):
+                        multi_lines.append(next_line.strip())
+                        i += 1
+                    else:
+                        break
+                value = ' '.join(multi_lines)
+            
             frontmatter[key] = value
+        i += 1
     
     return frontmatter, body
 

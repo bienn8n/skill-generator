@@ -157,10 +157,12 @@ Mục tiêu: Tạo ra tất cả file cần thiết, sẵn sàng deploy.
 
 **Tóm tắt nhanh:**
 
-1. Hỏi scope: Global vs Workspace
-2. Tạo cấu trúc thư mục theo Complexity Score
-3. Sinh nội dung SKILL.md (Frontmatter + Goal + Instructions + Examples + Constraints)
-4. Sinh **Full Package**: README.md, resources/, examples/, scripts/, workflows/, .gitignore
+1. Hỏi nền tảng: Antigravity / OpenClaw / Cursor / Claude / đa nền tảng → quyết định format output
+2. Hỏi scope: Global vs Workspace (chỉ áp dụng Antigravity/Claude)
+3. Tạo cấu trúc thư mục theo Complexity Score
+4. Sinh nội dung SKILL.md (Frontmatter + Goal + Instructions + Examples + Constraints)
+5. Sinh **Full Package**: README.md, resources/, examples/, scripts/, workflows/, .gitignore
+6. Nếu OpenClaw/Cline → sinh single-file ALL-IN-ONE (không tách resources/)
 
 > **⚠️ TUYỆT ĐỐI KHÔNG chỉ tạo 1 file SKILL.md đơn lẻ!**
 
@@ -213,7 +215,49 @@ Mục tiêu: Đảm bảo skill hoạt động đúng ý user TRƯỚC KHI deplo
 
 **Skill được sinh ra:** `weekly-report-writer`
 
-📚 *Xem chi tiết trong `examples/example_git_commit.md`*
+```markdown
+---
+name: weekly-report-writer
+description: |
+  Tự động tạo báo cáo công việc hàng tuần từ dữ liệu Jira và Git.
+  Sinh báo cáo theo mẫu 4 phần (Đã làm, Đang làm, Vướng mắc, Tuần tới).
+  Kích hoạt khi user nói "viết báo cáo tuần", "weekly report", "gửi report cho sếp".
+---
+
+# Goal
+Sinh báo cáo tuần chuyên nghiệp trong 2 phút thay vì 30 phút.
+
+# Instructions
+1. Hỏi user: "Tuần này từ ngày nào đến ngày nào?"
+2. Thu thập dữ liệu:
+   - Nếu có access Jira: Lấy tasks Done trong tuần
+   - Nếu không: Hỏi user liệt kê tasks đã hoàn thành
+3. Thu thập Git commits (nếu có repo):
+   - Chạy `git log --oneline --since="last monday"`
+4. Hỏi user bổ sung: "Có vướng mắc gì không? Tuần tới dự kiến làm gì?"
+5. Sinh báo cáo theo 4 phần bắt buộc.
+6. Format gọn trong 1 trang A4 (tối đa 400 từ).
+
+# Examples
+## Ví dụ 1: Tuần bình thường
+**Input:** 5 tasks done, 3 commits, không vướng mắc
+**Output:**
+# Báo cáo tuần — 24/02 → 28/02/2026
+## ✅ Đã hoàn thành (5 tasks)
+- [PROJ-123] Tạo API đăng ký user
+- [PROJ-124] Fix lỗi login timeout
+## 🔄 Đang thực hiện
+- [PROJ-130] Tích hợp thanh toán VNPay
+## ⚠️ Vướng mắc
+- Không có
+## 📋 Kế hoạch tuần tới
+- Hoàn thiện module thanh toán
+
+# Constraints
+- KHÔNG ĐƯỢC viết quá 400 từ (1 trang A4)
+- KHÔNG ĐƯỢC bỏ qua bất kỳ phần nào trong 4 phần bắt buộc
+- LUÔN LUÔN ghi ngày tháng cụ thể
+```
 
 ---
 

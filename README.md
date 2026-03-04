@@ -301,22 +301,12 @@ skill-generator/                             (35+ files)
 
 ## 📜 Changelog (EN)
 
-### v3.3 Modular Edition (2026-03-04)
-
-- **Split SKILL.md** into modular architecture: 1316 lines → 270 slim + 5 `phases/` files
-- Added `phases/` directory — detailed phase instructions as separate files
-- Added `/skill-generate` slash command — create skills from ideas (5-Phase interview)
-- Added **GitHub Actions CI** — 6 automated checks on push
-- Added `.pylintrc` — Python lint configuration
-- Updated bilingual README (EN + VN) with detailed Antigravity + OpenClaw install guides
-- Total: **8 slash commands** + **7 Python scripts** + **6 CI checks**
-
 ### v3.2 Expert Edition (2026-03-04)
 
 - Added **7 Perfect Skill Principles** + System Architecture philosophy
 - Added **Full Package Output** — generates complete skill directory (not just 1 file)
 - Added **5 expert scripts**: skill_audit, skill_export, skill_stats, skill_compare, skill_scaffold
-- Added **8 slash commands** for quick script access
+- Added **7 slash commands** for quick script access
 - Added **scripts_guide.md** — detailed usage guide for all scripts
 - Added **OpenClaw AI Gateway** support
 - Added **⚡ Fast Track** — shortcut for simple skills
@@ -846,13 +836,12 @@ python scripts/skill_scaffold.py my-new-skill --full
 python scripts/skill_scaffold.py my-new-skill --interactive
 ```
 
-### ⚡ Slash Commands (8 lệnh)
+### ⚡ Slash Commands
 
 Gõ `/` trong chat AI để truy cập nhanh:
 
 | Lệnh | Chức năng |
 | --- | --- |
-| `/skill-generate` | 🧠 **Tạo skill mới từ ý tưởng** (phỏng vấn 5 Phase) |
 | `/skill-audit` | 🔍 Audit skill theo 7 nguyên tắc |
 | `/skill-export` | 📦 Export ra các nền tảng khác |
 | `/skill-stats` | 📊 Xem thống kê + Cognitive Load |
@@ -866,21 +855,13 @@ Gõ `/` trong chat AI để truy cập nhanh:
 ## 📁 Cấu trúc dự án
 
 ```text
-skill-generator/                             (35+ files)
-├── SKILL.md                                ← 🧠 Slim orchestrator (~270 dòng)
+skill-generator/                             (27+ files)
+├── SKILL.md                                ← 🧠 Bộ não chính (1200+ dòng, 5 Phase)
 ├── README.md                               ← 📖 File này
 ├── .gitignore                              ← 🔒 Git config
-├── .pylintrc                               ← 🔧 Python lint config
-│
-├── phases/                                 ← 🎬 Hướng dẫn chi tiết từng Phase (5 files)
-│   ├── phase1_interview.md                 ← 🎤 Phase 1: Phỏng vấn thông minh
-│   ├── phase2_extract.md                   ← 🔬 Phase 2: Trích xuất thông tin
-│   ├── phase3_detect.md                    ← 🔎 Phase 3: Phát hiện pattern
-│   ├── phase4_generate.md                  ← 🏗️ Phase 4: Sinh skill package
-│   └── phase5_test.md                      ← 🧪 Phase 5: Test & refine
 │
 ├── resources/                              ← 📚 Tài liệu tham khảo (13 files)
-│   ├── scripts_guide.md                    ← Hướng dẫn sử dụng 7 scripts
+│   ├── scripts_guide.md                    ← 🆕 Hướng dẫn sử dụng 7 scripts
 │   ├── skill_template.md                   ← Template chuẩn SKILL.md
 │   ├── checklist.md                        ← Checklist 2-tier (Basic + Expert)
 │   ├── advanced_patterns.md                ← 6 pattern kiến trúc nâng cao
@@ -902,24 +883,20 @@ skill-generator/                             (35+ files)
 ├── scripts/                                ← 🔧 Công cụ Python (7 files)
 │   ├── validate_skill.py                   ← Kiểm tra SKILL.md hợp lệ
 │   ├── simulate_skill.py                   ← Mô phỏng chạy thử skill
-│   ├── skill_audit.py                      ← Audit 7 nguyên tắc, chấm S-tier
-│   ├── skill_export.py                     ← Export ra 6 nền tảng
-│   ├── skill_stats.py                      ← Thống kê + Cognitive Load
-│   ├── skill_compare.py                    ← So sánh 2 phiên bản
-│   └── skill_scaffold.py                   ← Tạo skeleton skill mới
+│   ├── skill_audit.py                      ← 🆕 Audit 7 nguyên tắc, chấm S-tier
+│   ├── skill_export.py                     ← 🆕 Export ra 6 nền tảng
+│   ├── skill_stats.py                      ← 🆕 Thống kê + Cognitive Load
+│   ├── skill_compare.py                    ← 🆕 So sánh 2 phiên bản
+│   └── skill_scaffold.py                   ← 🆕 Tạo skeleton skill mới
 │
-├── .agents/workflows/                      ← ⚡ Slash commands (8 files)
-│   ├── skill-generate.md                   ← 🆕 /skill-generate (tạo từ ý tưởng)
-│   ├── skill-audit.md                      ← /skill-audit
-│   ├── skill-export.md                     ← /skill-export
-│   ├── skill-stats.md                      ← /skill-stats
-│   ├── skill-compare.md                    ← /skill-compare
-│   ├── skill-scaffold.md                   ← /skill-scaffold
-│   ├── skill-validate.md                   ← /skill-validate
-│   └── skill-simulate.md                   ← /skill-simulate
-│
-└── .github/workflows/                      ← 🔄 CI/CD (1 file)
-    └── ci.yml                              ← 6 kiểm tra tự động khi push
+└── .agents/workflows/                      ← ⚡ Slash commands (7 files)
+    ├── skill-audit.md                      ← /skill-audit
+    ├── skill-export.md                     ← /skill-export
+    ├── skill-stats.md                      ← /skill-stats
+    ├── skill-compare.md                    ← /skill-compare
+    ├── skill-scaffold.md                   ← /skill-scaffold
+    ├── skill-validate.md                   ← /skill-validate
+    └── skill-simulate.md                   ← /skill-simulate
 ```
 
 ---
@@ -956,16 +933,6 @@ skill-generator/                             (35+ files)
 ---
 
 ## 📚 Changelog
-
-### v3.3 Modular Edition (2026-03-04)
-
-- **Tách SKILL.md** thành kiến trúc modular: 1316 dòng → 270 dòng slim + 5 file `phases/`
-- Thêm thư mục **`phases/`** — hướng dẫn chi tiết từng Phase riêng biệt
-- Thêm slash command **`/skill-generate`** — tạo skill từ ý tưởng (phỏng vấn 5 Phase)
-- Thêm **GitHub Actions CI** — 6 kiểm tra tự động khi push
-- Thêm **`.pylintrc`** — Python lint config
-- Cập nhật README song ngữ (EN + VN) với hướng dẫn cài đặt chi tiết Antigravity + OpenClaw
-- Tổng cộng: **8 slash commands** + **7 scripts Python** + **6 CI checks**
 
 ### v3.2 Expert Edition (2026-03-04)
 
